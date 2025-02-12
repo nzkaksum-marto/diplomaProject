@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations.Operations;
+
 using MusicShop.Infrastructure.Data.Entities;
 
 namespace MusicShop.Data
@@ -9,7 +11,7 @@ namespace MusicShop.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-            
+          
         }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Category> Categories { get; set; }
