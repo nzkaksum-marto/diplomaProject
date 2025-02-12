@@ -40,7 +40,6 @@ namespace MusicShop.Areas.Identity.Pages.Account
 
         public string ReturnUrl { get; set; }
 
-        public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
         public class InputModel
         {
@@ -61,10 +60,6 @@ namespace MusicShop.Areas.Identity.Pages.Account
             [Required]
             [Display(Name = "UserName")]
             public string UserName { get; set; }
-
-            [Required]
-            [Display(Name = "Phone number")]
-            public string PhoneNumber { get; set; }
 
             [Required]
             [EmailAddress]
