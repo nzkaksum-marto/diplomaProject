@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
+using MusicShop.Infrastructure.Data.Entities;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +14,16 @@ namespace MusicShop.Infrastructure.Data.Infrastructure
 {
     public static  class ApplicationBuilderExtension
     {
-        public static async Task<ApplicationBuilder> PrepareDatabase(this ApplicationBuilder app)
+        public static async Task<IApplicationBuilder> PrepareDatabase(this IApplicationBuilder app)
         {
             using var serviceScope = app.ApplicationServices.CreateScope();
-            var services =serviceScope.ServiceProvider;
+
+            var services = serviceScope.ServiceProvider;
+
             await RoleSeeder(services);
             await SeedAdministrator(services);
-            
+
+
             return app;
         }
         private static async Task RoleSeeder(IServiceProvider serviceProvider)
@@ -32,6 +37,30 @@ namespace MusicShop.Infrastructure.Data.Infrastructure
                 if (!roleExist) 
                 {
                     roleResult = await roleManager.CreateAsync(new IdentityRole(role));
+                }
+
+            }
+
+        }
+        private static async Task SeedAdministrator(IServiceProvider serviceProvider)
+        {
+            var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+            if (await userManager.FindByNameAsync("admin") == null)
+            {
+                ApplicationUser user = new ApplicationUser();
+                user.FirstName = "admin";
+                user.LastName = "admin";
+                user.UserName = "admin";
+                user.Email = "admin@admin.com";
+                user.Address = "admin address";
+                user.PhoneNumber = "0888888888";
+
+                var result = await userManager.CreateAsync(user, "Admin123456");
+
+                if (result.Succeeded) 
+                {
+                    userManager.AddToRoleAsync(user, "Administrator").Wait();
                 }
 
             }
