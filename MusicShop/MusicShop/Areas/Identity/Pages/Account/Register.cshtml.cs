@@ -100,8 +100,8 @@ namespace MusicShop.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    
-                        await _signInManager.SignInAsync(user, isPersistent: false);
+                    _userManager.AddToRoleAsync(user, "Client").Wait();
+                    await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
                 }
                 foreach (var error in result.Errors)

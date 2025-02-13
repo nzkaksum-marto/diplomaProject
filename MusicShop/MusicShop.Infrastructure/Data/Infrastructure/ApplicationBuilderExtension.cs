@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
+using MusicShop.Data;
 using MusicShop.Infrastructure.Data.Entities;
 
 using System;
@@ -22,6 +23,11 @@ namespace MusicShop.Infrastructure.Data.Infrastructure
 
             await RoleSeeder(services);
             await SeedAdministrator(services);
+            var dataCategory = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            SeedCategories(dataCategory);
+
+            var dataBrand = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            SeedBrands(dataBrand);
 
 
             return app;
@@ -66,6 +72,40 @@ namespace MusicShop.Infrastructure.Data.Infrastructure
             }
 
         }
+        private static void SeedCategories(ApplicationDbContext dataCategory)
+        {
+            if (dataCategory.Categories.Any())
+            {
+                return;
+            }
+            dataCategory.Categories.AddRange(new[]
+               {
+                  new Category { CategoryName = "Violins"},
+                  new Category { CategoryName = "Guitars"},
+                  new Category { CategoryName = "Pianos"},
+                  new Category { CategoryName = "Saxophones"},
+                  new Category { CategoryName = "Drums"}
+               });
+            dataCategory.SaveChanges();
+
+        }
+        private static void SeedBrands(ApplicationDbContext dataBrand)
+        {
+            if (dataBrand.Brands.Any())
+            {
+                return;
+            }
+            dataBrand.Brands.AddRange(new[]
+              {
+
+                new Brand { BrandName = "Epiphone"},
+                new Brand { BrandName = "Yamaha"},
+                new Brand { BrandName = "Gretsch Drums"},
+                new Brand { BrandName = "Eastman"}
+              });
+            dataBrand.SaveChanges();
+        }
+
 
     }
 }
