@@ -15,7 +15,7 @@ namespace MusicShop.Infrastructure.Data.Entities
         public int Id { get; set; }
         [Required]
         [MaxLength(25)]
-        public string Name { get; set; } = null!;
+        public string ProductName { get; set; } = null!;
         [Required]
         public string Description { get; set; } = null!;
         [Required]

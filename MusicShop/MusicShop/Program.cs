@@ -36,6 +36,7 @@ namespace MusicShop
             builder.Services.AddControllersWithViews();
             builder.Services.AddTransient<ICategoryService, CategoryService>();
             builder.Services.AddTransient<IBrandService, BrandService>();
+            builder.Services.AddTransient<IProductService, ProductService>();
 
 
             var app = builder.Build();
