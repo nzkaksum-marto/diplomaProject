@@ -23,4 +23,8 @@
     <ProjectReference Include="..\MusicShop.Infrastructure\MusicShop.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Product\" />
+  </ItemGroup>
+
 </Project>
