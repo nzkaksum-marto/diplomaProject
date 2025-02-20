@@ -27,11 +27,11 @@ namespace MusicShop.Models.Product
         public string Picture { get; set; } = null!;
         [Range(0, 5000)]
         [Display(Name = "Quantity")]
-        public string Quantity { get; set; }
+        public int Quantity { get; set; }
         [Display(Name = "Price")]
-        public string Price { get; set; }
+        public decimal Price { get; set; }
 
         [Display(Name = "Discount")]
-        public string Discount { get; set; }
+        public decimal Discount { get; set; }
     }
 }
