@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using MusicShop.Core.Contracts;
@@ -9,6 +10,7 @@ using MusicShop.Models.Product;
 
 namespace MusicShop.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
@@ -22,6 +24,7 @@ namespace MusicShop.Controllers
         }
 
         // GET: ProductController
+        [AllowAnonymous]
         public ActionResult Index(string searchStringCategoryName, string searchStringBrandName)
         {
             List<ProductIndexVM> products = _productService.GetProducts(searchStringCategoryName, searchStringBrandName)
@@ -43,6 +46,7 @@ namespace MusicShop.Controllers
         }
 
         // GET: ProductController/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int id)
         {
             Product item = _productService.GetProductById(id);
@@ -55,6 +59,7 @@ namespace MusicShop.Controllers
             {
                 Id = item.Id,
                 ProductName = item.ProductName,
+                Description = item.Description,
                 BrandId = item.BrandId,
                 BrandName = item.Brand.BrandName,
                 CategoryId = item.CategoryId,
@@ -116,6 +121,7 @@ namespace MusicShop.Controllers
             {
                 Id = product.Id,
                 ProductName = product.ProductName,
+                Description = product.Description,
                 BrandId = product.BrandId,
                 CategoryId = product.CategoryId,
                 Picture = product.Picture,
@@ -145,7 +151,7 @@ namespace MusicShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                var updated = _productService.Update(id, product.ProductName,product.BrandId, product.CategoryId, product.Picture, product.Quantity, product.Price, product.Discount);
+                var updated = _productService.Update(id, product.ProductName,product.Description, product.BrandId, product.CategoryId, product.Picture, product.Quantity, product.Price, product.Discount);
                 if (updated)
                 {
                     return this.RedirectToAction("Index");
@@ -157,7 +163,27 @@ namespace MusicShop.Controllers
         // GET: ProductController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Product item = _productService.GetProductById(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            ProductDeleteVM product = new ProductDeleteVM()
+            {
+                Id = item.Id,
+                ProductName = item.ProductName,
+                Description = item.Description,
+                BrandId = item.BrandId,
+                BrandName = item.Brand.BrandName,
+                CategoryId = item.CategoryId,
+                CategoryName = item.Category.CategoryName,
+                Picture = item.Picture,
+                Quantity = item.Quantity,
+                Price = item.Price,
+                Discount = item.Discount
+            };
+
+            return View(product);
         }
 
         // POST: ProductController/Delete/5
@@ -165,11 +191,12 @@ namespace MusicShop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
-            try
+            var deleted = _productService.RemoveById(id);
+            if (deleted)
             {
-                return RedirectToAction(nameof(Index));
+                return this.RedirectToAction("Success");
             }
-            catch
+            else
             {
                 return View();
             }
