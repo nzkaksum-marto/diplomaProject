@@ -15,6 +15,10 @@ namespace MusicShop.Models.Product
         public string ProductName { get; set; } = null!;
 
         [Required]
+        [Display(Name = "Description")]
+        public string Description { get; set; } = null!;
+
+        [Required]
         [Display(Name = "Brand")]
         public int BrandId { get; set; }
         public virtual List<BrandPairVM> Brands { get; set; } = new List<BrandPairVM>();

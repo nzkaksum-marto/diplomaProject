@@ -59,7 +59,7 @@ namespace MusicShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                var createdId = _productService.Create(product.ProductName, product.BrandId, product.CategoryId, product.Picture, product.Quantity, product.Price, product.Discount);
+                var createdId = _productService.Create(product.ProductName,product.Description, product.BrandId, product.CategoryId, product.Picture, product.Quantity, product.Price, product.Discount);
                 if (createdId)
                 {
                     return RedirectToAction(nameof(Index));

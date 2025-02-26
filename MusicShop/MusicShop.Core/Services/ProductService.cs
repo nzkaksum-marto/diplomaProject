@@ -18,11 +18,12 @@ namespace MusicShop.Core.Services
             _context = context;
         }
 
-        public bool Create(string name, int brandId, int categoryId, string picture, int quantity, decimal price, decimal discount)
+        public bool Create(string name,string description, int brandId, int categoryId, string picture, int quantity, decimal price, decimal discount)
         {
             Product item = new Product
             {
                 ProductName = name,
+                Description = description,
                 Brand = _context.Brands.Find(brandId),
                 Category = _context.Categories.Find(categoryId),
                 Picture = picture,
@@ -79,7 +80,7 @@ namespace MusicShop.Core.Services
             return _context.SaveChanges() != 0;
         }
 
-        public bool Update(int productId, string name, int brandId, int categoryId, string picture, int quantity, decimal price, decimal discount)
+        public bool Update(int productId, string name, string description, int brandId, int categoryId, string picture, int quantity, decimal price, decimal discount)
         {
            var product = GetProductById(productId);
             if (product == default (Product))
@@ -87,6 +88,7 @@ namespace MusicShop.Core.Services
                 return false;
             }
             product.ProductName = name;
+            product.Description = description;
             product.Brand = _context.Brands.Find(brandId);
             product.Category = _context.Categories.Find(categoryId);
             product.Picture = picture;
