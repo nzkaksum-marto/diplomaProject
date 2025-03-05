@@ -12,5 +12,6 @@ namespace MusicShop.Core.Contracts
     {
         bool Create(int productId, string userId, int quantity);
         List<Order> GetOrders();
+        List<Order> GetOrdersByUser(string userId);
     }
 }

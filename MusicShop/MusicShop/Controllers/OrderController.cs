@@ -5,6 +5,7 @@ using MusicShop.Core.Contracts;
 using MusicShop.Infrastructure.Data.Entities;
 using MusicShop.Models.Order;
 
+using System.Globalization;
 using System.Security.Claims;
 
 namespace MusicShop.Controllers
@@ -58,6 +59,46 @@ namespace MusicShop.Controllers
         {
             return View();
         }
-
+        [Authorize(Roles = "Administrator")]
+        public ActionResult Index()
+        {
+            List<OrderIndexVM> orders = _orderService.GetOrders()
+                .Select(x => new OrderIndexVM
+                {
+                    Id = x.Id,
+                    OrderDate = x.OrderDate.ToString("dd-MMM-yyyy hh:mm", CultureInfo.InvariantCulture),
+                    UserId = x.UserId,
+                    User = x.User.UserName,
+                    ProductId = x.ProductId,
+                    Product = x.Product.ProductName,
+                    Picture = x.Product.Picture,
+                    Quantity = x.Quantity,
+                    Price = x.Price,
+                    Discount = x.Discount,
+                    TotalPrice = x.TotalPrice,
+                }).ToList();
+            return View(orders);
+        }
+        public ActionResult MyOrders()
+        {
+            string currentUserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            List<OrderIndexVM> orders = _orderService.GetOrdersByUser(currentUserId)
+                .Select(x => new OrderIndexVM
+                {
+                    Id = x.Id,
+                    OrderDate = x.OrderDate.ToString("dd-MMM-yyy hh:mm",CultureInfo.InvariantCulture),
+                    UserId = x.UserId,
+                    User = x.User.UserName,
+                    ProductId = x.ProductId,
+                    Product = x.Product.ProductName,
+                    Picture = x.Product.Picture,
+                    Quantity = x.Quantity,
+                    Price = x.Price,
+                    Discount = x.Discount,
+                    TotalPrice = x.TotalPrice,
+                }).ToList();
+            return View(orders);
+        }
+        
     }
 }
