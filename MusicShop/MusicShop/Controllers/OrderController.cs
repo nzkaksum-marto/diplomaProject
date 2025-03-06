@@ -20,6 +20,7 @@ namespace MusicShop.Controllers
             _productService = productService;
             _orderService = orderService;
         }
+        //GET: OrderController/Create
         public ActionResult Create(int id)
         {
             Product product = _productService.GetProductById(id);
@@ -31,13 +32,15 @@ namespace MusicShop.Controllers
             {
                 ProductId = product.Id,
                 ProductName = product.ProductName,
-                Quantity = product.Quantity,
+                QuantityInStock = product.Quantity,
                 Price = product.Price,
                 Discount = product.Discount,
                 Picture = product.Picture
             };
             return View(order);
+
         }
+        //POST: Order/Controller
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(OrderCreateVM bindingModel) 
