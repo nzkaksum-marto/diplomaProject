@@ -11,7 +11,7 @@ namespace MusicShop.Models.Statistics
         [Display(Name = "Count Orders")]
         public int CountOrders{ get; set; }
         [Display(Name = "Total Sum orders")]
-        public int SumOrders { get; set; }
+        public decimal SumOrders { get; set; }
 
 
     }

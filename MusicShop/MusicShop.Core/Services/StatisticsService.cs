@@ -22,7 +22,7 @@ namespace MusicShop.Core.Services
            return _context.Users.Count()-1;
         }
 
-        public int CountOrderes()
+        public int CountOrders()
         {
            return _context.Orders.Count();
         }

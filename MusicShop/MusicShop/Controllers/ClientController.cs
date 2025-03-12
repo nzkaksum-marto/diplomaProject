@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
+using MusicShop.Core.Contracts;
 using MusicShop.Infrastructure.Data.Entities;
 using MusicShop.Models.Client;
 
@@ -10,6 +11,7 @@ namespace MusicShop.Controllers
     public class ClientController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IOrderService _orderService;
 
         public ClientController(UserManager<ApplicationUser> userManager)
         {

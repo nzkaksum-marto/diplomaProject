@@ -10,7 +10,7 @@ namespace MusicShop.Core.Contracts
     {
         int CountProducts();
         int CountClients();
-        int CountOrderes();
+        int CountOrders();
         decimal SumOrders();
 
     }

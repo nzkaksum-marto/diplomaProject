@@ -19,9 +19,12 @@ namespace MusicShop.Controllers
         public ActionResult Index()
         {
            StatisticsVM statistics = new StatisticsVM();
-            statistics.CountClients = StatisticsService.CountClients();
-            statistics.CountProducts = statisticsService.CountProducts();
-            return View();
+            statistics.CountClients = _statisticsService.CountClients();
+            statistics.CountProducts = _statisticsService.CountProducts();
+            statistics.CountOrders = _statisticsService.CountOrders();
+            statistics.SumOrders = _statisticsService.SumOrders();
+           
+            return View(statistics);
         }
 
         // GET: StatisticsController/Details/5
