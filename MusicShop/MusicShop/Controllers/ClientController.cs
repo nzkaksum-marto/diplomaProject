@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 using MusicShop.Core.Contracts;
+using MusicShop.Core.Services;
 using MusicShop.Infrastructure.Data.Entities;
 using MusicShop.Models.Client;
 
@@ -13,9 +14,10 @@ namespace MusicShop.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IOrderService _orderService;
 
-        public ClientController(UserManager<ApplicationUser> userManager)
+        public ClientController(UserManager<ApplicationUser> userManager, IOrderService orderService)
         {
             this._userManager = userManager;
+            this._orderService = orderService;
         }
         // GET: ClientController
         public async Task<IActionResult> Index()
@@ -99,6 +101,11 @@ namespace MusicShop.Controllers
             {
                 return NotFound();
             }
+            List<Order> orders = _orderService.GetOrdersByUser(id);
+            if (orders.Count >0)
+            {
+                return RedirectToAction(nameof(Denied));
+            }
             ClientDeleteVM userToDelete = new ClientDeleteVM()
             {
                 Id = user.Id,
@@ -126,7 +133,7 @@ namespace MusicShop.Controllers
             IdentityResult result = await _userManager.DeleteAsync(user);
             if (result.Succeeded) 
             {
-                return RedirectToAction("Succcess");
+                return RedirectToAction(nameof(Success));
             }
                 return NotFound();
             
@@ -134,6 +141,10 @@ namespace MusicShop.Controllers
         public ActionResult Success() 
         { 
             return View(); 
+        }
+        public ActionResult Denied()
+        {
+            return View();
         }
     }
 }
