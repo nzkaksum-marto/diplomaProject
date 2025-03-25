@@ -13,11 +13,13 @@ namespace MusicShop.Core.Contracts
         bool Create(int productId, string userId, int quantity);
         List<Order> GetOrders();
         List<Order> GetOrdersByUser(string userId);
-       /*
-        Order GetOrderByUser(int orderId);
-        bool RemoveById(int orderId);
-        bool Update(int orderId, int productId, string userId, int quantity);
+        bool CreateOrderFromCart(List<ShoppingCartItem> cartItems);
 
-        */
+        /*
+         Order GetOrderByUser(int orderId);
+         bool RemoveById(int orderId);
+         bool Update(int orderId, int productId, string userId, int quantity);
+
+         */
     }
 }

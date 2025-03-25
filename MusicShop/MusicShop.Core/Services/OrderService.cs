@@ -47,5 +47,28 @@ namespace MusicShop.Core.Services
             return _context.Orders.Where(x => x.UserId == userId)
                 .OrderByDescending(x => x.OrderDate).ToList();
         }
+        public bool CreateOrderFromCart(List<ShoppingCartItem> cartItems)
+        {
+            // Create order for each cart item
+            foreach (var item in cartItems)
+            {
+                var order = new Order
+                {
+                    OrderDate = DateTime.Now,
+                    ProductId = item.ProductId,
+                    UserId = item.UserId,
+                    Quantity = item.Quantity,
+                    Price = item.Product.Price,
+                    Discount = item.Product.Discount,
+                };
+                _context.Orders.Add(order);
+                // Update product quantity
+                var product = _context.Products.Find(item.ProductId);
+                product.Quantity -= item.Quantity;
+                _context.Products.Update(product);
+            }
+            return _context.SaveChanges() != null;
+
+        }
     }
 }
