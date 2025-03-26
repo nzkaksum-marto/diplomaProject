@@ -16,3 +16,7 @@ html {
 body {
   margin-bottom: 60px;
 }
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #ff5733;
+}
