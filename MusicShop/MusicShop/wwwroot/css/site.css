@@ -20,3 +20,68 @@ body {
 .carousel-control-next-icon {
     background-color: #ff5733;
 }
+/* Header Section */
+header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Carousel Section */
+.carousel-section {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+/* Carousel Controls */
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: #007bff; /* Custom blue color for the controls */
+}
+
+/* Featured Products Section */
+.featured-products .card {
+    transition: transform 0.3s ease-in-out;
+}
+
+    .featured-products .card:hover {
+        transform: translateY(-10px); /* Slight hover effect */
+    }
+
+.featured-products .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.featured-products .card-text {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.featured-products .btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+/* Footer Section */
+footer {
+    background-color: #343a40;
+    color: #fff;
+}
+
+/* General Body Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+}
+
+/* Bootstrap Grid Adjustments */
+@media (max-width: 768px) {
+    .carousel-section {
+        max-width: 100%;
+    }
+
+    .featured-products .card {
+        margin-bottom: 20px;
+    }
+}

@@ -4,32 +4,39 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!-- Header Section -->
+<header class="text-center py-5">
+    <h1 class="display-4 text-primary font-weight-bold">Welcome to Music Shop</h1>
+    <p class="lead text-muted">Discover your favorite music and instruments!</p>
+</header>
 
-<!-- Flexbox container to center the carousel -->
-<div class="row d-flex justify-content-center align-items-center" style="width: 59%; object-fit: cover;" >
-    <div class="col-md-8">
-        <!-- You can adjust the width using col-md-8 or another value -->
+<!-- Carousel Section -->
+<section class="carousel-section d-flex justify-content-center align-items-center mb-5" style="width: 59%; object-fit: cover;">
+    <div class="col-md-10 col-lg-8 col-xl-6" style="width: 59%; object-fit: cover;">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+
+            <!-- Carousel indicators -->
             <div class="carousel-indicators">
                 @foreach (var item in Model.Select((value, index) => new { value, index }))
                 {
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@item.index" class="@(item.index == 0 ? "active" : "")" aria-current="@(item.index == 0 ? "true" : "false")" aria-label="Slide @item.index"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@item.index"
+                            class="@(item.index == 0 ? "active" : "")"
+                            aria-current="@(item.index == 0 ? "true" : "false")"
+                            aria-label="Slide @item.index"></button>
                 }
             </div>
 
+            <!-- Carousel inner -->
             <div class="carousel-inner">
                 @foreach (var item in Model.Select((value, index) => new { value, index }))
                 {
                     <div class="carousel-item @(item.index == 0 ? "active" : "")">
-                        <img src="@item.value.Picture" class="d-block w-100" alt="image" style="width: 59%; object-fit: cover;" >
+                        <img src="@item.value.Picture" class="d-block w-100" alt="Product Image" style="width: 59%; object-fit: cover;">
                     </div>
                 }
             </div>
 
+            <!-- Carousel controls -->
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -40,4 +47,28 @@
             </button>
         </div>
     </div>
-</div>
+</section>
+
+<!-- Featured Products Section -->
+<section class="featured-products text-center py-5">
+    <h2 class="mb-4 text-primary">Featured Products</h2>
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm border-light">
+                    <img src="@product.Picture" class="card-img-top" alt="@product.ProductName" style="width: 59%; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.ProductName</h5>
+                        <a href="#" class="btn btn-primary">View Product</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+<!-- Footer Section -->
+<footer class="text-center py-4 bg-dark text-white">
+    <p>&copy; 2025 Music Shop. All Rights Reserved.</p>
+</footer>
