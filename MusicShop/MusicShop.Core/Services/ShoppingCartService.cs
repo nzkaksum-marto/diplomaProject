@@ -40,7 +40,7 @@ namespace MusicShop.Core.Services
                 _context.ShoppingCartItems.Add(cartItem);
             }
 
-            return SaveChanges();
+            return _context.SaveChanges() != 0;
         }
 
         public bool ClearCart(string userId)
@@ -48,7 +48,7 @@ namespace MusicShop.Core.Services
             var items = _context.ShoppingCartItems.Where(x => x.UserId == userId).ToList();
             _context.ShoppingCartItems.RemoveRange(items);
 
-            return SaveChanges();
+            return _context.SaveChanges() != 0;
         }
 
         public List<ShoppingCartItem> GetShoppingCartByUser(string userId)
@@ -66,7 +66,7 @@ namespace MusicShop.Core.Services
             if (cartItem == null) return false;
 
             _context.ShoppingCartItems.Remove(cartItem);
-            return SaveChanges();
+            return _context.SaveChanges() != 0;
         }
 
         public bool UpdateCart(int cartItemId, int quantity)
@@ -86,12 +86,12 @@ namespace MusicShop.Core.Services
             cartItem.Quantity = quantity;
             _context.Update(cartItem);
 
-            return SaveChanges();
+            return _context.SaveChanges() != 0;
         }
 
         private bool SaveChanges()
         {
-            return _context.SaveChanges() > 0;
+            return _context.SaveChanges() != 0;
         }
     }
 }
