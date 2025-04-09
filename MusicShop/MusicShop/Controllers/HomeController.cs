@@ -39,7 +39,7 @@ namespace MusicShop.Controllers
             return this.View(products);
         }
 
-        public IActionResult Privacy()
+        public IActionResult Contacts()
         {
             return View();
         }
