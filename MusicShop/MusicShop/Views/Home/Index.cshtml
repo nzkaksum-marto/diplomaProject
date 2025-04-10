@@ -4,18 +4,18 @@
     ViewData["Title"] = "Home Page";
 }
 
-<!-- Header Section -->
+
 <header class="text-center py-5">
     <h1 class="display-4 text-primary font-weight-bold">Welcome to Music Shop</h1>
     <p class="lead text-muted">Discover your favorite music and instruments!</p>
 </header>
 
-<!-- Carousel Section -->
+
 <section class="carousel-section d-flex justify-content-center align-items-center mb-5" style="width: 59%; object-fit: cover;">
     <div class="col-md-10 col-lg-8 col-xl-6" style="width: 59%; object-fit: cover;">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
 
-            <!-- Carousel indicators -->
+            
             <div class="carousel-indicators">
                 @foreach (var item in Model.Select((value, index) => new { value, index }))
                 {
@@ -26,7 +26,7 @@
                 }
             </div>
 
-            <!-- Carousel inner -->
+           
             <div class="carousel-inner">
                 @foreach (var item in Model.Select((value, index) => new { value, index }))
                 {
@@ -36,7 +36,7 @@
                 }
             </div>
 
-            <!-- Carousel controls -->
+           
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -49,14 +49,14 @@
     </div>
 </section>
 
-<!-- Featured Products Section -->
+
 <section class="featured-products text-center py-5">
     <h2 class="mb-4 text-primary">Featured Products</h2>
     <div class="row">
         @foreach (var product in Model)
         {
             <div class="col-md-4 mb-4">
-                <div class="card shadow-sm border-light">
+                <div class="card shadow-sm border-dark">
                     <img src="@product.Picture" class="card-img-top" alt="@product.ProductName" style="width: 59%; object-fit: cover;">
                     <div class="card-body">
                         <h5 class="card-title">@product.ProductName</h5>
@@ -68,7 +68,3 @@
     </div>
 </section>
 
-<!-- Footer Section -->
-<footer class="text-center py-4 bg-dark text-white">
-    <p>&copy; 2025 Music Shop. All Rights Reserved.</p>
-</footer>

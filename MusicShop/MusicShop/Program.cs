@@ -40,6 +40,7 @@ namespace MusicShop
             builder.Services.AddTransient<IOrderService, OrderService>();
             builder.Services.AddTransient<IStatisticsService, StatisticsService>();
             builder.Services.AddTransient<IShoppingCartService, ShoppingCartService>();
+            builder.Services.AddTransient<IWishlistService, WishlistService>();
 
 
             var app = builder.Build();
