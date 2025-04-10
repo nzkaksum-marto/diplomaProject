@@ -29,12 +29,13 @@ namespace MusicShop.Models.Product
         public virtual List<CategoryPairVM> Categories { get; set; } = new List<CategoryPairVM>();
         [Display(Name = "Picture")]
         public string Picture { get; set; } = null!;
-        [Range(0, 5000)]
+        [Range(0, 500)]
         [Display(Name = "Quantity")]
         public int Quantity { get; set; }
+        [Range(0, 50000)]
         [Display(Name = "Price")]
         public decimal Price { get; set; }
-
+        [Range(0, 100)]
         [Display(Name = "Discount")]
         public decimal Discount { get; set; }
     }
