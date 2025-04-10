@@ -21,7 +21,7 @@ namespace MusicShop.Controllers
         {
             var currentUserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var wishList = _wishListService.GetWishListByUserId(currentUserId);
-            if (wishList.IsNullOrEmpty()) return NoContent();
+         
 
             var model = wishList.Select(w => new WishlistDTO
             {
