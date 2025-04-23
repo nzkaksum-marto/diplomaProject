@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using MusicShop.Core.Contracts;
@@ -7,6 +8,7 @@ using MusicShop.Models.Statistics;
 
 namespace MusicShop.Controllers
 {
+    [Authorize(Roles ="Ädministrator")]
     public class StatisticsController : Controller
     {
         private readonly IStatisticsService _statisticsService;

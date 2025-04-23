@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,7 @@ using MusicShop.Models.Client;
 
 namespace MusicShop.Controllers
 {
+    [Authorize(Roles ="Administrator")]
     public class ClientController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

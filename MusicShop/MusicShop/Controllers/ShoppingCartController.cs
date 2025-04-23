@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MusicShop.Core.Contracts;
 using MusicShop.Core.Services;
 using MusicShop.Models.ShoppingCart;
@@ -6,6 +7,7 @@ using System.Security.Claims;
 
 namespace MusicShop.Controllers
 {
+    [Authorize]
     public class ShoppingCartController : Controller
     {
         private readonly IShoppingCartService _cartService;

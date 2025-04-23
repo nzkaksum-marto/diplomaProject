@@ -1,4 +1,5 @@
 ﻿using Castle.Core.Internal;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MusicShop.Core.Contracts;
 using MusicShop.Models.Wishlist;
@@ -6,6 +7,7 @@ using System.Security.Claims;
 
 namespace MusicShop.Controllers
 {
+    [Authorize]
     public class WishListController : Controller
     {
         private readonly IWishlistService _wishListService;
