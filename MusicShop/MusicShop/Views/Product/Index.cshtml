@@ -27,7 +27,7 @@
     {
         <div class="card" style="width: 18rem;">
             <a asp-action="Details" asp-route-id="@item.Id" class="btn">
-                <img src="@Html.DisplayFor(modelItem => item.Picture)" class="card-img-top" alt="product img" width="100" />
+                <img src="@Html.DisplayFor(modelItem => item.Picture)" class="card-img-top" alt="product img" max-width:100%; />
             </a>
             <div class="card-body">
 
