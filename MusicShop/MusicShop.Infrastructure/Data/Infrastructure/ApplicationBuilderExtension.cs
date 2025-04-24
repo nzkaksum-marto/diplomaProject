@@ -101,7 +101,8 @@ namespace MusicShop.Infrastructure.Data.Infrastructure
                 new Brand { BrandName = "Epiphone"},
                 new Brand { BrandName = "Yamaha"},
                 new Brand { BrandName = "Gretsch Drums"},
-                new Brand { BrandName = "Eastman"}
+                new Brand { BrandName = "Eastman"},
+                new Brand { BrandName = "Yanagisawa"}
               });
             dataBrand.SaveChanges();
         }
