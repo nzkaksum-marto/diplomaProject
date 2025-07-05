@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
 
 using MusicShop.Core.Contracts;
 using MusicShop.Models;
@@ -17,6 +19,23 @@ namespace MusicShop.Controllers
         {
             _logger = logger;
             _productService = productService;
+        }
+        
+        [AllowAnonymous]
+        public IActionResult SetLanguage(string culture, string returnUrl)
+        {
+            Console.WriteLine($"Changing culture to {culture}");
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName, 
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions
+                {
+                    Expires = DateTimeOffset.UtcNow.AddYears(1),
+                    IsEssential = true 
+                }
+            );
+
+            return LocalRedirect(returnUrl);
         }
 
         public IActionResult Index()
