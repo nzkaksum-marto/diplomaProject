@@ -75,6 +75,13 @@ namespace MusicShop.Controllers
             var cartItems = _cartService.GetShoppingCartByUser(currentUserId);
             return View("Index", cartItems);
         }
+
+        public ActionResult ClearCart()
+        {
+            string currentUserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            _cartService.ClearCart(currentUserId);
+            return RedirectToAction("Index");
+        }
         // GET: ShoppingCartController
         public ActionResult Index()
         {

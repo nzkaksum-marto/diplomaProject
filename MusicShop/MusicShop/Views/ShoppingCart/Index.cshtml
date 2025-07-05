@@ -14,8 +14,7 @@
 {
     <div class="empty-cart">
         <h3>Your shopping cart is empty!</h3>
-        <p>Go add some products!</p>
-        <a asp-action="Index" asp-controller="Product" class="continue-shopping-btn btn">Continue Shopping</a>
+        <a asp-action="Index" asp-controller="Product" class="btn btn-warning">Go add some products!</a>
     </div>
 }
 else
@@ -62,6 +61,7 @@ else
         </table>
         <div class="text-right">
             <h4 class="my-3">Total: <span id="total">@initialTotal.ToString("F2")</span> lv.</h4>
+            <a asp-action="ClearCart" asp-controller="ShoppingCart" class="btn btn-warning">Clear cart</a>
             <a href="@Url.Action("PlaceOrder", "ShoppingCart")" class="btn btn-dark">Order</a>
             <a asp-action="Index" asp-controller="Product" class="btn btn-warning">Continue Shopping</a>
         </div>
@@ -69,9 +69,9 @@ else
 }
 @section Scripts {
     <script>
-        // Function to update the quantity of products
         function updateQuantity(input) {
-            var quantity = parseInt(input.value);
+            var quantity = 1;
+             quantity = parseInt(input.value);
             var maxQuantity = parseInt(input.getAttribute('max'));
             var cartItemId = parseInt(input.closest('tr').querySelector('[name="cartItemId"]').value);
 
