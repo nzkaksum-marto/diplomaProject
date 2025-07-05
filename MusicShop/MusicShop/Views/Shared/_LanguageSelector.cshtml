@@ -1,0 +1,12 @@
+@using Microsoft.AspNetCore.Localization
+@{
+    var currentCulture = Context.Features.Get<IRequestCultureFeature>()?.RequestCulture.Culture.Name ?? "en-GB";
+}
+
+<form asp-controller="Home" asp-action="SetLanguage" method="post" id="languageForm">
+    <select name="culture" onchange="this.form.submit()" class="form-select">
+        <option value="en-GB" selected="@(currentCulture == "en-GB")">English</option>
+        <option value="bg-BG" selected="@(currentCulture == "bg-BG")">Български</option>
+    </select>
+    <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
+</form>

@@ -6,6 +6,8 @@ using MusicShop.Core.Services;
 using MusicShop.Data;
 using MusicShop.Infrastructure.Data.Entities;
 using MusicShop.Infrastructure.Data.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Mvc.Localization;
 
 namespace MusicShop
 {
@@ -33,7 +35,8 @@ namespace MusicShop
             })
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews()
+            .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization(); ;
             builder.Services.AddTransient<ICategoryService, CategoryService>();
             builder.Services.AddTransient<IBrandService, BrandService>();
             builder.Services.AddTransient<IProductService, ProductService>();
@@ -41,9 +44,27 @@ namespace MusicShop
             builder.Services.AddTransient<IStatisticsService, StatisticsService>();
             builder.Services.AddTransient<IShoppingCartService, ShoppingCartService>();
             builder.Services.AddTransient<IWishlistService, WishlistService>();
+            builder.Services.AddLocalization(
+                options => options.ResourcesPath = "Resources"
+            );
+            var supportedCultures = new[]
+                {
+                    new System.Globalization.CultureInfo("en-GB"),
+                    new System.Globalization.CultureInfo("bg-BG")
+                };
+            builder.Services.Configure<RequestLocalizationOptions>(options =>
+            {
+                options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en-GB");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+            });
+
 
 
             var app = builder.Build();
+            var localizationOptions = app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value;
+            localizationOptions.SetDefaultCulture("en-GB");
+            app.UseRequestLocalization(localizationOptions);
             app.PrepareDatabase();
 
             if (app.Environment.IsDevelopment())

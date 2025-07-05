@@ -1,4 +1,6 @@
-﻿@model IEnumerable<MusicShop.Models.Product.ProductIndexVM>
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@model IEnumerable<MusicShop.Models.Product.ProductIndexVM>
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 @{
     ViewData["Title"] = "Home Page";
@@ -6,7 +8,7 @@
 
 
 <header class="text-center py-5">
-    <h1 class="display-4 text-primary font-weight-bold">Welcome to Music Shop</h1>
+    <h1 class="display-4 text-primary font-weight-bold">@Localizer["Welcome to Music Shop"]</h1>
     <p class="lead text-muted">Discover your favorite music and instruments!</p>
 </header>
 
