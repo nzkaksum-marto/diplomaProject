@@ -86,9 +86,6 @@ namespace MusicShop.Controllers
         public ActionResult Index()
         {
             string currentUserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-
-
             List<ShoppingCartIndexVM> cartItems = _cartService.GetShoppingCartByUser(currentUserId)
            .Select(item => new ShoppingCartIndexVM
            {
@@ -99,9 +96,6 @@ namespace MusicShop.Controllers
                Price = item.Product.Price,
                Discount = item.Product.Discount,
                UserId = currentUserId,
-
-
-
            }).ToList();
             return View(cartItems);
 
