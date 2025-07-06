@@ -6,15 +6,27 @@
     ViewData["Title"] = "Home Page";
 }
 
-
 <header class="text-center py-5">
     <h1 class="display-4 text-primary font-weight-bold">@Localizer["Welcome to Music Shop"]</h1>
     <p class="lead text-muted">Discover your favorite music and instruments!</p>
 </header>
+<div class="container">
+    <div class="sidebar">
+      <h2>Каталог</h2>
+      <ul>
+        <li><a href="">Китари и бас</a></li>
+        <li>Барабани и ударни</li>
+        <li>Клавишни и оркестрови</li>
+        <li>Музикални аксесоари</li>
+        <li>Озвучаване и осветление</li>
+        <li>Разпродажби</li>
+        <li>Предстоящо зареждане</li>
+      </ul>
+    </div>
 
 
-<section class="carousel-section d-flex justify-content-center align-items-center mb-5" style="width: 59%; object-fit: cover;">
-    <div class="col-md-10 col-lg-8 col-xl-6" style="width: 59%; object-fit: cover;">
+<section class="carousel-section d-flex justify-content-center align-items-center mb-5" style="width:60%; object-fit: cover;">
+    <div class="col-md-10 col-lg-8 col-xl-6" style="width: 60%; object-fit: cover;">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
 
             
@@ -34,7 +46,7 @@
                 @foreach (var item in Model.Select((value, index) => new { value, index }))
                 {
                     <div class="carousel-item @(item.index == 0 ? "active" : "")">
-                        <img src="@item.value.Picture" class="d-block w-100" alt="Product Image" style="width: 59%; object-fit: cover;">
+                        <img src="@item.value.Picture" class="d-block w-100" alt="Product Image" style="width: 60%; object-fit: cover;">
                     </div>
                 }
             </div>

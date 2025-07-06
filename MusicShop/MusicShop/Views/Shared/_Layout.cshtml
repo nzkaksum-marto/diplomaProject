@@ -10,9 +10,21 @@
 </head>
 <body>
     <header >
+<nav class="navbar navbar-light bg-light py-0 border-bottom" style="height: 36px; font-size: 14px;">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+        <div class="text-center w-100">
+            Call us: +359 123 456 789
+        </div>
+        <div class="position-absolute end-0 me-3">
+            <partial name="_LoginPartial" />
+        </div>
+    </div>
+</nav>
+
+
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navi">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MusicShop</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" style="font-size: 40px;">MUSIC SHOP</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -62,7 +74,7 @@
                         }
 
                     </ul>
-                    <partial name="_LoginPartial" />
+                    
                 </div>
             </div>
         </nav>
