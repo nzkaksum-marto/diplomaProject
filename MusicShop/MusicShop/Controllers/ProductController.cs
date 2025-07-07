@@ -23,7 +23,7 @@ namespace MusicShop.Controllers
             this._categoryService = categoryService;
             this._brandService = brandService;
         }
-        
+
 
         // GET: ProductController
         [AllowAnonymous]
@@ -208,5 +208,7 @@ namespace MusicShop.Controllers
             return View();
         }
 
+       
+       
     }
 }
