@@ -1,0 +1,65 @@
+body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .banner {
+      background: url('https://images.unsplash.com/photo-1508976378723-85e10fb26305?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+      color: white;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 40px;
+      border-radius: 20px;
+      animation: fadeInUp 1.2s ease-in-out;
+    }
+
+    .overlay h1 {
+      font-size: 48px;
+      margin: 0 0 10px;
+      letter-spacing: 2px;
+    }
+
+    .overlay p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .banner button {
+      background-color: #ffcc00;
+      color: #222;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .banner button:hover {
+      background-color: #ffaa00;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .overlay h1 {
+        font-size: 32px;
+      }
+    }

@@ -1,22 +1,23 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer Localizer
 @model IEnumerable<MusicShop.Models.Product.ProductIndexVM>
-<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
 @{
     ViewData["Title"] = "Home Page";
 }
 
+
 <header class="text-center py-5">
     <h1 class="display-4 text-primary font-weight-bold">@Localizer["Welcome to Music Shop"]</h1>
-    <p class="lead text-muted">Discover your favorite music and instruments!</p>
+    <p class="lead text-muted">@Localizer["Discover your favorite music and instruments!"]</p>
 </header>
 <div class="container">
     <body>
   <div class="banner">
     <div class="banner-content">
-      <h1>Harmony Music Shop</h1>
-      <p>Your destination for instruments, gear & musical inspiration</p>
-      <button>Shop Now</button>
+      <h1>  Music Shop</h1>
+                <p>@Localizer["Your destination for instruments, gear & musical inspiration"]</p>
+                <button>@Localizer["Shop Now"]</button>
     </div>
   </div>
 </body>
@@ -64,7 +65,7 @@
 
 
 <section class="featured-products text-center py-5">
-    <h2 class="mb-4 text-primary">Featured Products</h2>
+    <h2 class="mb-4 text-primary">@Localizer["Featured Products"]</h2>
     <div class="row">
         @foreach (var product in Model)
         {
@@ -73,7 +74,7 @@
                     <img src="@product.Picture" class="card-img-top" alt="@product.ProductName" style="width: 59%; object-fit: cover;">
                     <div class="card-body">
                         <h5 class="card-title">@product.ProductName</h5>
-                        <a href="#" class="btn btn-primary">View Product</a>
+                        <a href="#" class="btn btn-primary">@Localizer["View Product"]</a>
                     </div>
                 </div>
             </div>
